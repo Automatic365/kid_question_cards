@@ -1,0 +1,386 @@
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Document Upload */
+.upload-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.upload-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.upload-section {
+  margin-bottom: 2rem;
+}
+
+.upload-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.file-upload-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.file-upload-btn:hover {
+  background: #45a049;
+}
+
+.divider {
+  text-align: center;
+  margin: 2rem 0;
+  color: #999;
+  font-weight: bold;
+}
+
+.filename-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.content-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: monospace;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem 2rem;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #0b7dda;
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Category Selector */
+.category-container {
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.back-btn {
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background: #e0e0e0;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.category-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.category-card:hover {
+  border-color: #2196F3;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+  transform: translateY(-2px);
+}
+
+.category-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.category-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.category-stats {
+  margin-top: 1rem;
+}
+
+.category-stats span {
+  font-size: 0.9rem;
+  color: #666;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #4CAF50;
+  transition: width 0.3s;
+}
+
+/* Flashcard */
+.flashcard-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.progress-info {
+  display: flex;
+  gap: 2rem;
+  font-size: 1rem;
+  color: #666;
+}
+
+.completed-count {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.flashcard-wrapper {
+  perspective: 1000px;
+  margin: 3rem auto;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flashcard {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  cursor: pointer;
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.flashcard-front {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.flashcard-back {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.card-content {
+  text-align: center;
+  width: 100%;
+}
+
+.card-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.card-content h2 {
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
+
+.category-desc {
+  opacity: 0.9;
+  margin-top: 1rem;
+}
+
+.flip-hint {
+  margin-top: 2rem;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.completed-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.flashcard-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.control-btn {
+  padding: 0.75rem 1.5rem;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.control-btn:hover {
+  background: #0b7dda;
+  transform: translateY(-2px);
+}
+
+.control-btn.mark-complete {
+  background: #4CAF50;
+}
+
+.control-btn.mark-complete:hover {
+  background: #45a049;
+}
+
+.control-btn.mark-complete.completed {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.control-btn.mark-complete.completed:hover {
+  transform: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+.empty-state p {
+  font-size: 1.2rem;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .upload-container h1,
+  .category-container h1,
+  .category-card h3 {
+    color: #f0f0f0;
+  }
+
+  .subtitle,
+  .category-description,
+  .category-stats span {
+    color: #aaa;
+  }
+
+  .category-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+
+  .category-card:hover {
+    border-color: #2196F3;
+  }
+
+  .filename-input,
+  .content-textarea {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #f0f0f0;
+  }
+
+  .back-btn {
+    background: #2a2a2a;
+    color: #f0f0f0;
+  }
+
+  .back-btn:hover {
+    background: #333;
+  }
+}
