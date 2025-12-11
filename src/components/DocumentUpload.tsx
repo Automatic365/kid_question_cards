@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Document } from '../types';
 import { parseMarkdownDocument } from '../utils/parser';
 import { sanitizeText, sanitizeFileName, validateFileSize, validateFileType } from '../utils/sanitize';
+import { DEFAULT_CONTENT } from '../data/defaultContent';
 
 interface DocumentUploadProps {
   onDocumentCreated: (document: Document) => void;
@@ -11,6 +12,12 @@ export function DocumentUpload({ onDocumentCreated }: DocumentUploadProps) {
   const [textContent, setTextContent] = useState('');
   const [fileName, setFileName] = useState('');
   const [error, setError] = useState('');
+
+  const handleLoadDemo = () => {
+    setTextContent(DEFAULT_CONTENT);
+    setFileName('Kid Question Cards');
+    setError('');
+  };
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -75,6 +82,14 @@ export function DocumentUpload({ onDocumentCreated }: DocumentUploadProps) {
     <div className="upload-container">
       <h1>Flashcard Creator</h1>
       <p className="subtitle">Upload a document or paste your content to get started</p>
+
+      <div className="demo-section">
+        <button onClick={handleLoadDemo} className="demo-btn">
+          Try Demo: 100 Kid Question Cards
+        </button>
+      </div>
+
+      <div className="divider">OR</div>
 
       <div className="upload-section">
         <h2>Upload File</h2>
