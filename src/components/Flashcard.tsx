@@ -67,7 +67,14 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
       </div>
 
       <div className="flashcard-wrapper">
-        <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+        <div
+          className={`flashcard ${isFlipped ? 'flipped' : ''}`}
+          onClick={handleFlip}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleFlip(); }}
+          aria-label={isFlipped ? 'Showing question. Click to show category' : 'Showing category. Click to reveal question'}
+        >
           <div className="flashcard-face flashcard-front">
             <div className="card-content">
               <p className="card-label">Category</p>
@@ -75,7 +82,7 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
               {category.description && (
                 <p className="category-desc">{category.description}</p>
               )}
-              <p className="flip-hint">Click to reveal question</p>
+              <p className="flip-hint">Click or press Enter to reveal question</p>
             </div>
           </div>
           <div className="flashcard-face flashcard-back">
@@ -83,28 +90,29 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
               <p className="card-label">Question</p>
               <h2>{currentQuestion.text}</h2>
               {currentQuestion.completed && (
-                <span className="completed-badge">✓ Completed</span>
+                <span className="completed-badge" aria-label="This question is marked as completed">✓ Completed</span>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flashcard-controls">
-        <button onClick={handlePrevious} className="control-btn">
+      <nav className="flashcard-controls" aria-label="Flashcard navigation">
+        <button onClick={handlePrevious} className="control-btn" aria-label="Go to previous question">
           ← Previous
         </button>
         <button
           onClick={handleMarkComplete}
           className={`control-btn mark-complete ${currentQuestion.completed ? 'completed' : ''}`}
           disabled={currentQuestion.completed}
+          aria-label={currentQuestion.completed ? 'Question already completed' : 'Mark this question as completed'}
         >
           {currentQuestion.completed ? '✓ Completed' : 'Mark Complete'}
         </button>
-        <button onClick={handleNext} className="control-btn">
+        <button onClick={handleNext} className="control-btn" aria-label="Go to next question">
           Next →
         </button>
-      </div>
+      </nav>
     </div>
   );
 }

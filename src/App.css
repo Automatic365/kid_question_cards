@@ -99,6 +99,27 @@
   cursor: not-allowed;
 }
 
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #c62828;
+}
+
+.error-boundary {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-boundary h1 {
+  color: #c62828;
+  margin-bottom: 1rem;
+}
+
 /* Category Selector */
 .category-container {
   padding: 2rem;
