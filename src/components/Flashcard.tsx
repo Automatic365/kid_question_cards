@@ -76,6 +76,7 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
           role="button"
           tabIndex={0}
           onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleFlip(); }}
+          aria-label={isFlipped ? 'Showing question. Click to show category' : 'Showing category. Click to reveal question'}
         >
           {/* Front of Card: Category/Topic */}
           <div className="flashcard-face flashcard-front">
@@ -95,15 +96,15 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
               <p className="card-label">Your Challenge!</p>
               <h2>{currentQuestion.text}</h2>
               {currentQuestion.completed && (
-                <span className="completed-badge">⭐ Completed!</span>
+                <span className="completed-badge" aria-label="This question is marked as completed">⭐ Completed!</span>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      <nav className="flashcard-controls">
-        <button onClick={handlePrevious} className="kid-btn btn-secondary">
+      <nav className="flashcard-controls" aria-label="Flashcard navigation">
+        <button onClick={handlePrevious} className="kid-btn btn-secondary" aria-label="Go to previous question">
           ⬅ Prev
         </button>
 
@@ -111,11 +112,12 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
           onClick={handleMarkComplete}
           className={`kid-btn ${currentQuestion.completed ? 'btn-nav' : 'btn-primary'}`}
           disabled={currentQuestion.completed}
+          aria-label={currentQuestion.completed ? 'Question already completed' : 'Mark this question as completed'}
         >
           {currentQuestion.completed ? 'Already Done!' : '✨ I Got It! ✨'}
         </button>
 
-        <button onClick={handleNext} className="kid-btn btn-secondary">
+        <button onClick={handleNext} className="kid-btn btn-secondary" aria-label="Go to next question">
           Next ➡
         </button>
       </nav>
