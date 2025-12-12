@@ -6,269 +6,307 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  font-family: 'Fredoka', cursive;
 }
 
-/* Document Upload */
+/* --- Shared Components & Utilities --- */
+
+/* 3D Button Utility */
+.kid-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Fredoka', cursive;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  transition: all 0.1s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.kid-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2) !important;
+  /* Flatten shadow */
+}
+
+/* Primary "Start" Action (Green) */
+.btn-primary {
+  background-color: #4ADE80;
+  color: #064E3B;
+  box-shadow: 0 6px 0 #166534;
+}
+
+.btn-primary:hover {
+  background-color: #22c55e;
+}
+
+/* Secondary Action (Blue) */
+.btn-secondary {
+  background-color: #60A5FA;
+  color: #1E3A8A;
+  box-shadow: 0 6px 0 #1E40AF;
+}
+
+.btn-secondary:hover {
+  background-color: #3B82F6;
+}
+
+/* Danger / Stop Action (Pink/Red) */
+.btn-danger {
+  background-color: #F472B6;
+  color: #831843;
+  box-shadow: 0 6px 0 #BE185D;
+}
+
+.btn-danger:hover {
+  background-color: #EC4899;
+}
+
+/* Navigation / Back (Yellow) */
+.btn-nav {
+  background-color: #FCD34D;
+  color: #78350F;
+  box-shadow: 0 6px 0 #B45309;
+}
+
+.btn-nav:hover {
+  background-color: #FBBF24;
+}
+
+/* --- Upload Section (Teacher/Parent Zone) --- */
 .upload-container {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 4px solid #fff;
+  text-align: center;
 }
 
 .upload-container h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  color: #ec4899;
+  /* Pink */
+  text-shadow: 2px 2px 0px #fff;
   margin-bottom: 0.5rem;
-  color: #333;
 }
 
 .subtitle {
-  color: #666;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-bottom: 2.5rem;
 }
 
 .demo-section {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.demo-btn {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 600;
-  transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-.demo-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.upload-section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 24px;
+  border: 4px dashed #cbd5e1;
 }
 
 .upload-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #444;
-}
-
-.file-upload-btn {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  background: #4CAF50;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s;
-}
-
-.file-upload-btn:hover {
-  background: #45a049;
-}
-
-.divider {
-  text-align: center;
-  margin: 2rem 0;
-  color: #999;
-  font-weight: bold;
+  font-size: 1.8rem;
+  color: #3b82f6;
+  margin-bottom: 1.5rem;
 }
 
 .filename-input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 1rem;
   margin-bottom: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
+  border: 3px solid #cbd5e1;
+  border-radius: 16px;
+  font-size: 1.2rem;
+  font-family: 'Fredoka', cursive;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.filename-input:focus {
+  border-color: #60A5FA;
 }
 
 .content-textarea {
   width: 100%;
   padding: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: monospace;
+  border: 3px solid #cbd5e1;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-family: 'Fredoka', cursive;
+  /* Use the fun font even for input */
   resize: vertical;
+  margin-bottom: 1.5rem;
+  min-height: 150px;
+}
+
+.content-textarea:focus {
+  border-color: #60A5FA;
+  outline: none;
+}
+
+/* Wrapper for file input to style it */
+.file-upload-wrapper {
   margin-bottom: 1rem;
 }
 
-.submit-btn {
-  width: 100%;
-  padding: 0.75rem 2rem;
-  background: #2196F3;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+input[type="file"] {
   font-size: 1rem;
-  transition: background 0.3s;
+  font-family: 'Fredoka', cursive;
 }
 
-.submit-btn:hover:not(:disabled) {
-  background: #0b7dda;
-}
-
-.submit-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.error-message {
-  background: #ffebee;
-  color: #c62828;
-  padding: 0.75rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  border-left: 4px solid #c62828;
-}
-
-.error-boundary {
-  text-align: center;
-  padding: 4rem 2rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.error-boundary h1 {
-  color: #c62828;
-  margin-bottom: 1rem;
-}
-
-/* Category Selector */
+/* --- Category Selector (Level Select) --- */
 .category-container {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .header {
   display: flex;
   align-items: center;
+  /* Vertical center */
+  justify-content: center;
+  /* Horizontally center content */
+  position: relative;
+  /* Position context for absolute elements if needed */
+  margin-bottom: 3rem;
   gap: 1rem;
-  margin-bottom: 2rem;
+  /* Space between items if using flex gap */
 }
 
+/* Specifically target the back button to position it absolutely on the left if desired, 
+   OR keep it in flow. Let's keep it in flow but make sure H1 is dominant */
 .header h1 {
-  flex: 1;
-  text-align: center;
+  font-size: 3rem;
+  color: #8B5CF6;
+  /* Violet */
   margin: 0;
-  font-size: 2rem;
-}
-
-.back-btn {
-  padding: 0.5rem 1rem;
-  background: #f0f0f0;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s;
-}
-
-.back-btn:hover {
-  background: #e0e0e0;
+  text-shadow: 3px 3px 0 #fff;
+  flex-grow: 1;
+  /* H1 takes up available space */
+  text-align: center;
 }
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .category-card {
   background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
+  border: 4px solid #fff;
+  border-radius: 24px;
   padding: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Bouncy */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
 }
 
+/* Assign random-ish border colors to cards via nth-child for variety */
+.category-card:nth-child(4n+1) {
+  border-color: #F472B6;
+}
+
+/* Pink */
+.category-card:nth-child(4n+2) {
+  border-color: #60A5FA;
+}
+
+/* Blue */
+.category-card:nth-child(4n+3) {
+  border-color: #4ADE80;
+}
+
+/* Green */
+.category-card:nth-child(4n+4) {
+  border-color: #FCD34D;
+}
+
+/* Yellow */
+
 .category-card:hover {
-  border-color: #2196F3;
-  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
-  transform: translateY(-2px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .category-card h3 {
+  font-size: 1.8rem;
   margin: 0 0 0.5rem 0;
-  font-size: 1.3rem;
-  color: #333;
+  color: #334155;
 }
 
 .category-description {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  color: #64748b;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.category-stats {
-  margin-top: 1rem;
-}
-
-.category-stats span {
-  font-size: 0.9rem;
-  color: #666;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
+/* XP Bar for Category */
 .progress-bar {
   width: 100%;
-  height: 8px;
-  background: #e0e0e0;
-  border-radius: 4px;
+  height: 16px;
+  background: #f1f5f9;
+  border-radius: 8px;
   overflow: hidden;
+  border: 2px solid #e2e8f0;
 }
 
 .progress-fill {
   height: 100%;
-  background: #4CAF50;
-  transition: width 0.3s;
+  background: linear-gradient(90deg, #4ADE80 0%, #22c55e 100%);
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Flashcard */
+/* --- Flashcard (Game Mode) --- */
 .flashcard-container {
-  padding: 2rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  perspective: 1000px;
 }
 
 .progress-info {
   display: flex;
-  gap: 2rem;
-  font-size: 1rem;
-  color: #666;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #334155;
 }
 
 .completed-count {
-  color: #4CAF50;
-  font-weight: bold;
+  color: #ec4899;
 }
 
 .flashcard-wrapper {
-  perspective: 1000px;
-  margin: 3rem auto;
-  min-height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flashcard {
+  margin: 2rem auto;
   width: 100%;
   max-width: 600px;
   height: 400px;
   position: relative;
+}
+
+.flashcard {
+  width: 100%;
+  height: 100%;
+  position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 }
 
@@ -281,150 +319,93 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 32px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border: 6px solid white;
 }
 
 .flashcard-front {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
   color: white;
 }
 
 .flashcard-back {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
+  background: white;
+  color: #334155;
   transform: rotateY(180deg);
+  border-color: #F472B6;
+  /* Pink border for back */
 }
 
-.card-content {
-  text-align: center;
-  width: 100%;
-}
-
+/* Typography on Card */
 .card-label {
-  font-size: 0.9rem;
-  opacity: 0.9;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
+  position: absolute;
+  top: 2rem;
+  font-size: 1rem;
   letter-spacing: 2px;
+  opacity: 0.8;
+  text-transform: uppercase;
 }
 
 .card-content h2 {
-  font-size: 1.8rem;
-  margin: 0 0 1rem 0;
-  line-height: 1.4;
+  font-size: 2.5rem;
+  line-height: 1.3;
+  margin: 0;
+  text-align: center;
 }
 
-.category-desc {
-  opacity: 0.9;
-  margin-top: 1rem;
+.flashcard-back .card-content h2 {
+  color: #334155;
 }
 
 .flip-hint {
-  margin-top: 2rem;
+  position: absolute;
+  bottom: 2rem;
   opacity: 0.7;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  animation: bounce 2s infinite;
 }
 
-.completed-badge {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.3);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 .flashcard-controls {
   display: flex;
-  gap: 1rem;
   justify-content: center;
+  gap: 2rem;
   margin-top: 2rem;
 }
 
-.control-btn {
-  padding: 0.75rem 1.5rem;
-  background: #2196F3;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.completed-badge {
+  background: #4ADE80;
+  color: #064E3B;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
   font-size: 1rem;
-  transition: all 0.3s;
+  display: inline-block;
 }
 
-.control-btn:hover {
-  background: #0b7dda;
-  transform: translateY(-2px);
-}
-
-.control-btn.mark-complete {
-  background: #4CAF50;
-}
-
-.control-btn.mark-complete:hover {
-  background: #45a049;
-}
-
-.control-btn.mark-complete.completed {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.control-btn.mark-complete.completed:hover {
-  transform: none;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: #666;
-}
-
-.empty-state p {
-  font-size: 1.2rem;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .upload-container h1,
-  .category-container h1,
-  .category-card h3 {
-    color: #f0f0f0;
-  }
-
-  .subtitle,
-  .category-description,
-  .category-stats span {
-    color: #aaa;
-  }
-
-  .category-card {
-    background: #2a2a2a;
-    border-color: #444;
-  }
-
-  .category-card:hover {
-    border-color: #2196F3;
-  }
-
-  .filename-input,
-  .content-textarea {
-    background: #2a2a2a;
-    border-color: #444;
-    color: #f0f0f0;
-  }
-
-  .back-btn {
-    background: #2a2a2a;
-    color: #f0f0f0;
-  }
-
-  .back-btn:hover {
-    background: #333;
-  }
-}
+/* --- Dark Mode Overrides (Optional - keeping mostly light for "Candy" feel) --- */
+/* We will stick to the candy theme as primary, but ensure text is readable */

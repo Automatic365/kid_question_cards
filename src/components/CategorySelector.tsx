@@ -17,8 +17,10 @@ export function CategorySelector({ categories, questions, onCategorySelect, onBa
   return (
     <div className="category-container">
       <div className="header">
-        <button onClick={onBack} className="back-btn">← Back</button>
-        <h1>Select a Category</h1>
+        <button onClick={onBack} className="kid-btn btn-nav">
+          ⬅ Menu
+        </button>
+        <h1>Pick a World! 🌍</h1>
       </div>
 
       <div className="categories-grid">
@@ -37,7 +39,7 @@ export function CategorySelector({ categories, questions, onCategorySelect, onBa
                 <p className="category-description">{category.description}</p>
               )}
               <div className="category-stats">
-                <span>{progress.completed} / {progress.total} completed</span>
+                <span>⭐ {progress.completed} / {progress.total} Stars</span>
                 <div className="progress-bar">
                   <div className="progress-fill" style={{ width: `${percentage}%` }} />
                 </div>

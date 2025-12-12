@@ -37,7 +37,10 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
   };
 
   const handleMarkComplete = () => {
-    onComplete(currentQuestion.id);
+    if (!currentQuestion.completed) {
+      onComplete(currentQuestion.id);
+      // Optional: Add a sound or delay here if we had sounds
+    }
     handleNext();
   };
 
@@ -45,10 +48,10 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
     return (
       <div className="flashcard-container">
         <div className="header">
-          <button onClick={onBack} className="back-btn">← Back to Categories</button>
+          <button onClick={onBack} className="kid-btn btn-nav">⬅ Menu</button>
         </div>
         <div className="empty-state">
-          <p>No questions found in this category.</p>
+          <p>No questions found in this world!</p>
         </div>
       </div>
     );
@@ -58,12 +61,12 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
 
   return (
     <div className="flashcard-container">
-      <div className="header">
-        <button onClick={onBack} className="back-btn">← Back to Categories</button>
-        <div className="progress-info">
-          <span>{currentIndex + 1} / {questions.length}</span>
-          <span className="completed-count">{completedCount} completed</span>
-        </div>
+      <div className="progress-info">
+        <button onClick={onBack} className="kid-btn btn-nav" style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>
+          ⬅ Menu
+        </button>
+        <span>Card {currentIndex + 1} of {questions.length}</span>
+        <span className="completed-count">⭐ {completedCount} Done</span>
       </div>
 
       <div className="flashcard-wrapper">
@@ -73,44 +76,47 @@ export function Flashcard({ questions, category, onComplete, onBack }: Flashcard
           role="button"
           tabIndex={0}
           onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleFlip(); }}
-          aria-label={isFlipped ? 'Showing question. Click to show category' : 'Showing category. Click to reveal question'}
         >
+          {/* Front of Card: Category/Topic */}
           <div className="flashcard-face flashcard-front">
             <div className="card-content">
-              <p className="card-label">Category</p>
+              <p className="card-label">The Topic Is...</p>
               <h2>{category.name}</h2>
               {category.description && (
                 <p className="category-desc">{category.description}</p>
               )}
-              <p className="flip-hint">Click or press Enter to reveal question</p>
+              <p className="flip-hint">Tap to flip! 👆</p>
             </div>
           </div>
+
+          {/* Back of Card: The Question */}
           <div className="flashcard-face flashcard-back">
             <div className="card-content">
-              <p className="card-label">Question</p>
+              <p className="card-label">Your Challenge!</p>
               <h2>{currentQuestion.text}</h2>
               {currentQuestion.completed && (
-                <span className="completed-badge" aria-label="This question is marked as completed">✓ Completed</span>
+                <span className="completed-badge">⭐ Completed!</span>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      <nav className="flashcard-controls" aria-label="Flashcard navigation">
-        <button onClick={handlePrevious} className="control-btn" aria-label="Go to previous question">
-          ← Previous
+      <nav className="flashcard-controls">
+        <button onClick={handlePrevious} className="kid-btn btn-secondary">
+          ⬅ Prev
         </button>
+
         <button
           onClick={handleMarkComplete}
-          className={`control-btn mark-complete ${currentQuestion.completed ? 'completed' : ''}`}
+          className={`kid-btn ${currentQuestion.completed ? 'btn-nav' : 'btn-primary'}`}
           disabled={currentQuestion.completed}
-          aria-label={currentQuestion.completed ? 'Question already completed' : 'Mark this question as completed'}
         >
-          {currentQuestion.completed ? '✓ Completed' : 'Mark Complete'}
+          {currentQuestion.completed ? 'Already Done!' : '✨ I Got It! ✨'}
         </button>
-        <button onClick={handleNext} className="control-btn" aria-label="Go to next question">
-          Next →
+
+        <button onClick={handleNext} className="kid-btn btn-secondary">
+          Next ➡
         </button>
       </nav>
     </div>

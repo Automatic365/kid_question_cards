@@ -80,57 +80,52 @@ export function DocumentUpload({ onDocumentCreated }: DocumentUploadProps) {
 
   return (
     <div className="upload-container">
-      <h1>Flashcard Creator</h1>
-      <p className="subtitle">Upload a document or paste your content to get started</p>
+      <h1>Let's Play!</h1>
+      <p className="subtitle">Parents: Set up the game below</p>
 
       <div className="demo-section">
-        <button onClick={handleLoadDemo} className="demo-btn">
-          Try Demo: 100 Kid Question Cards
+        <button onClick={handleLoadDemo} className="kid-btn btn-primary">
+          🚀 Play Demo Game
         </button>
       </div>
 
-      <div className="divider">OR</div>
-
       <div className="upload-section">
-        <h2>Upload File</h2>
-        <label className="file-upload-btn">
+        <h2>Or upload your own questions</h2>
+        <div className="file-upload-wrapper">
           <input
             type="file"
             accept=".md,.txt,.markdown"
             onChange={handleFileUpload}
-            style={{ display: 'none' }}
+            className="kid-btn"
           />
-          Choose File (.md, .txt)
-        </label>
+        </div>
       </div>
 
-      <div className="divider">OR</div>
-
       <div className="upload-section">
-        <h2>Paste Content</h2>
         {error && <div className="error-message" role="alert">{error}</div>}
         <input
           type="text"
-          placeholder="Document name (optional)"
+          placeholder="Name your game (e.g. Science Quiz)"
           value={fileName}
           onChange={(e) => setFileName(e.target.value)}
           className="filename-input"
           maxLength={100}
         />
         <textarea
-          placeholder="Paste your markdown content here..."
+          placeholder="Paste markdown content here..."
           value={textContent}
           onChange={(e) => setTextContent(e.target.value)}
-          rows={12}
+          rows={8}
           className="content-textarea"
           maxLength={10000}
         />
         <button
           onClick={handleTextSubmit}
           disabled={!textContent.trim()}
-          className="submit-btn"
+          className="kid-btn btn-secondary"
+          style={{ width: '100%' }}
         >
-          Create Flashcards
+          🎮 Start Game
         </button>
       </div>
     </div>
